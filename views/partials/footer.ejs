@@ -1,0 +1,28 @@
+<!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.js"></script>
+    <!-- Scrolling Nav JavaScript -->
+    <script src="js/jquery.easing.min.js"></script>
+    <script src="js/scrolling-nav.js"></script>    
+    <!-- Control Carousel s-->
+    <script src="js/carouselcontrol.js"></script>
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="js/fancyapps/source/jquery.fancybox.css?v=2.1.6" type="text/css" media="screen" />
+    <script type="text/javascript" src="js/fancyapps/source/jquery.fancybox.pack.js?v=2.1.6"></script>
+
+    <script>
+       $(document).ready(function() {
+            $("a#popupmap").fancybox({
+                maxWidth	: 800,
+                maxHeight	: 400,
+                fitToView	: false,
+                width		: '70%',
+                height		: '70%',
+                autoSize	: false,
+                closeClick	: false,
+                'transitionIn': 'elastic',
+                'transitionOut': 'elastic',
+            });
+        });
+    </script>

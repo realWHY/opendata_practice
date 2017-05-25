@@ -1,0 +1,95 @@
+<% layout('layout') %>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"
+style="background-color:#FFFFFF;">
+    <% include ../partials/navHome %>   
+    <div style="margin:120px 20px; border-style: solid; width = 1000px;
+                padding-top: 30px;">
+        <div style=" display:inline-block; padding-top: 10px;">
+           <form method="POST" action="/smallrange" name="myForm">
+            <div style="display:none">
+                <select name="list" size="1">
+                    <option value="1-桃園市">桃園市</option>
+                    <option value="1-新竹縣">"新竹縣</option>
+                    <option value="1-高雄市">高雄市</option>
+                    <option value="2-桃園市-大溪區">大溪區</option>
+                    <option value="2-桃園市-復興區">復興區</option>
+                    <option value="2-新竹縣-關西鎮">關西鎮</option>
+                    <option value="2-高雄市-旗山區">旗山區</option>
+                    <option value="2-高雄市-美濃區">美濃區</option>
+                </select>
+             </div>
+
+            <select name="level1" OnChange="javascript:changelist('1');">
+                <option value="City">City</option>
+                <option value="桃園市">桃園市</option>
+                <option value="新竹縣">新竹縣</option>
+                <option value="高雄市">高雄市</option>
+            </select>
+
+            <select name="level2">
+                <option value="Town">Town</option>
+            </select>
+            <P><INPUT type=submit value="Confirm"></p>
+        </form>    
+        </div>
+        
+        <div id="liveRank" style="border-style: solid; display:inline-block; width:30%; height=500px; vertical-align:top; margin-right:8px; text-align:center;">
+            RANK
+             <% if(data != undefined){ %>
+                <% for(i=0; i<data.length; i++){ %> 
+                    <ul> 
+                        <%= data[i].County %>
+                        <%= data[i].Town %>
+                        <%= data[i].Vill %>
+                    &nbsp; alert value:<%= data[i].AlertValue %>
+                    </ul>
+                <% } %>
+            <% } %> 
+        </div>
+       
+    </div>
+     
+    <script Language="JavaScript">
+        function changelist(level)
+        {
+
+            var i,j;
+            var s,t;
+
+            if (level=='1')
+            {
+                document.myForm.level2.length=0;
+                if (document.myForm.level1.value!=='')
+                {
+                        j=1;
+                        console.log("length = ",document.myForm.list.length);
+                        for(i=0;i<document.myForm.list.length;i++)
+                        {
+                            s = document.myForm.list.options[i].value;
+                            console.log("s = ",s);
+
+                            t = '2-'+document.myForm.level1.value+'-';
+                            console.log("t = ",t);
+
+                            console.log("s.indexOf(t) = ",s.indexOf(t));
+                            if (s.indexOf(t)==0)
+                            {
+                            j++;
+                            var oOption = document.createElement("OPTION");
+                            document.myForm.level2.options.add(oOption);
+                            oOption.innerText = document.myForm.list.options[i].text;
+                            oOption.value = s.replace(t,'');
+                            console.log("oOption.value = ",oOption.value);
+                            }
+                         }
+                         document.myForm.level2.length=j;
+                    }
+                }
+
+
+            return true;
+        }
+    </script>
+     
+</body>

@@ -1,0 +1,58 @@
+<% layout('layout') %>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" style="background-color:#BBFF66;">
+    <% include ../partials/navSL %>  
+    <div class="container">
+        <br/>
+        <div class="text-center reg_msg">
+            <h2 class="fancy"><span></span></h2>
+        </div>
+        <br><br><br><br>
+        
+            <div class="text-center reg_msg">
+            <h2 class="fancy"><span>LOG IN</span></h2>
+        </div><br>
+
+        <div class="row login">
+            
+            <% if(hasErrors) { %>
+                <% for(var i=0; i<messages.length; i++){ %>
+                    <div class = "alert alert-danger alert-dismissable">
+                        <%= messages[i] %>
+                    </div>
+                <% } %>
+            <% } %>
+            
+            <form method="POST" action="/login">
+
+                <div class="form-group input_group">
+                    <input id="email" class="form-control" name="email" type="text" autocomplete="on" placeholder="EMAIL" style="margin-bottom:20px;">
+                </div>
+
+                <div class="form-group input_group">
+                    <input id="password" class="form-control" name="password" type="password" placeholder="PASSWORD" style="margin-bottom:20px;">
+                </div>
+
+
+                <div class="form-group">
+                    <input type="submit" id="login" value="LOG IN" class="form-control btn btn-primary" name="login" style="">
+                </div>
+                
+                <div class="form-group">
+                    <label for="">
+                        <input type="checkbox" name="rememberme" class="" value="yes">
+                    </label>&nbsp;&nbsp;Remember Me
+                </div>
+
+              </form>
+
+              <div>
+                <h4 class="pull-left">Don't have an account? <a href="/signup">SignUp</a></h4>
+                <h4 class="pull-right">Forgot password?<a 
+                href="/forgot">Send email</a></h4>
+              </div>
+        </div>
+
+        <img src="./img/signlog/book-png-5.png" style="float:right; height: 180px;"/>
+    </div>
+    
+</body>

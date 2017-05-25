@@ -1,0 +1,47 @@
+<% layout('layout') %>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"
+style="background-color:#FFFFFF;">
+    <% include ../partials/navHome %>   
+    <div style="margin:120px 20px; border-style: solid; width = 1000px;
+                padding-top: 30px;">
+        <div style="display:inline-block; padding-top: 10px;">
+            <img src="./img/taiwanmap/taiwanMap75.png" alt="" usemap="#Map"  hidefocus="true" display:inline-block;/>
+            <map name="Map" id="Map">
+                  <area alt="hualien" id="花蓮縣" title="hualien" href="#" shape="poly" style="outline:none" onclick="myPost(this)" coords="267,223,268,211,270,199,274,184,278,172,278,162,278,154,286,143,292,138,298,139,302,142,310,142,314,140,322,138,326,139,334,141,338,143,335,152,327,154,326,162,326,167,324,173,324,177,323,180,322,186,322,191,322,197,319,206,318,209,318,213,316,218,315,223,315,226,314,233,312,237,312,243,310,247,310,250,310,258,310,264,310,266,307,270,298,266,296,270,296,273,294,278,294,281,292,282,290,287,284,294,282,298,280,300,286,297,283,301,282,309,280,311,278,311,266,302,258,299,251,295,246,290,242,287,238,284,231,282,238,273,239,272,246,264,251,260,251,260,254,257,255,255,258,254,259,249,262,247,266,243,266,234,267,226,266,225,266,223,264,221,264,220,262,218,264,218,267,214"/>
+            </map>
+        </div>
+        
+        <div id="liveRank" style="border-style: solid; display:inline-block; width:30%; height=500px; vertical-align:top; margin-right:8px; text-align:center;">
+            RANK
+             <% if(data != undefined){ %>
+                <% for(i=0; i<data.length; i++){ %> 
+                    <ul>
+                       <%= data[i].County %>
+                       <%= data[i].Town %>    
+                    &nbsp; alert value:<%= data[i].AlertValue %>
+                    </ul>
+                <% } %>
+            <% } %> 
+        </div>
+        
+    </div>
+    <script>   	
+        function myPost(item) {
+            var method = "POST"; 
+            var path = "/wide"; 
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            form.setAttribute("action", path);
+
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("name", "rankinput");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("value", item.getAttribute("id"));
+
+            form.appendChild(hiddenField);
+           
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+</body>
